@@ -6,11 +6,8 @@ namespace VideoWorld.Models
     {
         private readonly string title;
 
-        public IPrice Price { get; set; }
-
-        public Movie(string title, IPrice price)
+        public Movie(string title)
         {
-            Price = price;
             if (string.IsNullOrEmpty(title))
             {
                 throw new ArgumentNullException("title");
@@ -44,5 +41,9 @@ namespace VideoWorld.Models
             get { return title; }
         }
 
+        public decimal GetCharge(int rentalDays)
+        {
+            return rentalDays*1.00m;
+        }
     }
 }

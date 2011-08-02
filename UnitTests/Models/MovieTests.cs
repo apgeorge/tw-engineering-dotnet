@@ -9,36 +9,21 @@ namespace UnitTests.Models
         [TestCase("")]
         public void ShouldRequireTitle(string invalidTitle)
         {
-            Assert.That(() => new Movie(invalidTitle, new RegularPrice()), Throws.Exception);
+            Assert.That(() => new Movie(invalidTitle), Throws.Exception);
         }
 
         [Test]
         public void ShouldContainTitle()
         {
-            var movie = new Movie("Avatar", new RegularPrice());
+            var movie = new Movie("Avatar");
             Assert.That(movie.Title, Is.EqualTo("Avatar"));
         }
 
-        private static readonly Movie RegularMovieInstance = new Movie("Regular", new RegularPrice());
-        private static readonly Movie NewReleaseMovieInstance = new Movie("NewRelease", new NewReleasePrice());
-        private static readonly Movie ChildrensMovieInstance = new Movie("Childrens", new ChildrensPrice());
+        private static readonly Movie RegularMovieInstance = new Movie("Regular");
+        private static readonly Movie NewReleaseMovieInstance = new Movie("NewRelease");
+        private static readonly Movie ChildrensMovieInstance = new Movie("Childrens");
 
-        [Test]
-        public void ShouldCalculateCorrentFrequentRenterPointsForNonNewReleaseMovie()
-        {
-            Assert.AreEqual(1, RegularMovieInstance.Price.GetFrequentRenterPoints(1));
-            Assert.AreEqual(1, RegularMovieInstance.Price.GetFrequentRenterPoints(4));
-            Assert.AreEqual(1, ChildrensMovieInstance.Price.GetFrequentRenterPoints(1));
-            Assert.AreEqual(1, ChildrensMovieInstance.Price.GetFrequentRenterPoints(4));
-        }
-
-        [Test]
-        public void ShouldCalculateCorrentFrequentRenterPointsForNewReleaseMovie()
-        {
-            Assert.AreEqual(1, NewReleaseMovieInstance.Price.GetFrequentRenterPoints(1));
-            Assert.AreEqual(2, NewReleaseMovieInstance.Price.GetFrequentRenterPoints(2));
-            Assert.AreEqual(2, NewReleaseMovieInstance.Price.GetFrequentRenterPoints(3));
-        }
+        
 
     }
 }

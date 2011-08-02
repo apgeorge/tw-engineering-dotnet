@@ -11,8 +11,7 @@ namespace UnitTests.Models
         {
             var customer = new Customer("John Smith");
             const string noRentalsStatement = "Rental Record for John Smith\n"
-                                              + "Amount charged is $0.00\n"
-                                              + "You have a new total of 0 frequent renter points";
+                                              + "Amount charged is $0.00\n";
             Assert.AreEqual(noRentalsStatement, customer.Statement(new List<Rental>()));
         }
 
@@ -20,21 +19,20 @@ namespace UnitTests.Models
         public void NonEmpty()
         {
             const string expected = "Rental Record for John Smith\n"
-                                    + "  Monty Python and the Holy Grail  -  $3.50\n"
-                                    + "  Ran  -  $2.00\n"
-                                    + "  LA Confidential  -  $6.00\n"
-                                    + "  Star Trek 13.2  -  $3.00\n"
+                                    + "  Monty Python and the Holy Grail  -  $3.00\n"
+                                    + "  Ran  -  $1.00\n"
+                                    + "  LA Confidential  -  $2.00\n"
+                                    + "  Star Trek 13.2  -  $1.00\n"
                                     + "  Wallace and Gromit  -  $6.00\n"
-                                    + "Amount charged is $20.50\n"
-                                    + "You have a new total of 6 frequent renter points";
+                                    + "Amount charged is $13.00\n";
 
             var customer = new Customer("John Smith");
 
-            var montyPython = new Movie("Monty Python and the Holy Grail", new RegularPrice());
-            var ran = new Movie("Ran", new RegularPrice());
-            var laConfidential = new Movie("LA Confidential", new NewReleasePrice());
-            var starTrek = new Movie("Star Trek 13.2", new NewReleasePrice());
-            var wallaceAndGromit = new Movie("Wallace and Gromit", new ChildrensPrice());
+            var montyPython = new Movie("Monty Python and the Holy Grail");
+            var ran = new Movie("Ran");
+            var laConfidential = new Movie("LA Confidential");
+            var starTrek = new Movie("Star Trek 13.2");
+            var wallaceAndGromit = new Movie("Wallace and Gromit");
 
             var mixedRentals = new List<Rental>();
             mixedRentals.Add(new Rental(montyPython, 3));

@@ -7,7 +7,6 @@ namespace VideoWorld.Models
     public class Customer
     {
         private readonly Cart cart = new Cart();
-        private int frequentRenterPoints = 0;
 
         public Customer(string name)
         {
@@ -38,16 +37,14 @@ namespace VideoWorld.Models
                 int rentalDays = rental.Period;
 
                 result += "  " + rental.Movie.Title + "  -  $"
-                          + rental.Movie.Price.GetCharge(rentalDays) + "\n";
+                          + rental.Movie.GetCharge(rentalDays) + "\n";
 
-                totalAmount += rental.Movie.Price.GetCharge(rentalDays);
+                totalAmount += rental.Movie.GetCharge(rentalDays);
 
-                frequentRenterPoints += rental.Movie.Price.GetFrequentRenterPoints(rentalDays);
             }
 
             // add footer lines
             result += "Amount charged is $" + totalAmount + "\n";
-            result += "You have a new total of " + frequentRenterPoints + " frequent renter points";
             return result;
         }
 
