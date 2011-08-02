@@ -18,12 +18,5 @@ namespace UnitTests.Models
             var movie = new Movie("Avatar");
             Assert.That(movie.Title, Is.EqualTo("Avatar"));
         }
-
-        private static readonly Movie RegularMovieInstance = new Movie("Regular");
-        private static readonly Movie NewReleaseMovieInstance = new Movie("NewRelease");
-        private static readonly Movie ChildrensMovieInstance = new Movie("Childrens");
-
-        
-
     }
 }
